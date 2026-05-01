@@ -62,6 +62,11 @@ def fixtures():
             params={"date": date},
             timeout=20
         )
+
+        # 🔥 DEBUG CLAVE
+        print("STATUS API:", response.status_code)
+        print("RESPONSE API:", response.text)
+
     except requests.RequestException as e:
         return jsonify({
             "date": date,
@@ -75,7 +80,8 @@ def fixtures():
             "date": date,
             "count": 0,
             "fixtures": [],
-            "error": f"API-Football devolvió status {response.status_code}"
+            "error": f"API-Football status {response.status_code}",
+            "api_response": response.text  # 👈 ESTO ES LO IMPORTANTE
         }), 200
 
     data = response.json()
